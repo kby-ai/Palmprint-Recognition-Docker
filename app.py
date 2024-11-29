@@ -40,6 +40,9 @@ app = Flask(__name__)
 def compare_palmprint():
     result = "None"
     similarity = -1
+
+    palm1 = None
+    palm2 = None
     
     file1 = request.files['file1']
     file2 = request.files['file2']
@@ -49,7 +52,7 @@ def compare_palmprint():
 
     except:
         result = "Failed to open file1"
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -60,7 +63,7 @@ def compare_palmprint():
         image2 = cv2.imdecode(np.frombuffer(file2.read(), np.uint8), cv2.IMREAD_COLOR)
     except:
         result = "Failed to open file2"
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -70,12 +73,14 @@ def compare_palmprint():
     img2 = mat_to_bytes(image2)
     hand_type_1, x11, y11, x12, y12, detect_state_1 = encoder.detect_using_bytes(img1)
     hand_type_2, x21, y21, x22, y22, detect_state_2 = encoder.detect_using_bytes(img2)
+    palm1 = [hand_type_1, x11, y11, x12, y12]
+    palm2 = [hand_type_2, x21, y21, x22, y22]
 
     if hand_type_1 != hand_type_2:
         result = "Different hand"
         # print(f"\n 2 images are from the different hand\n similarity: 0.0")
         similarity = 0.0
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -83,14 +88,14 @@ def compare_palmprint():
     if detect_state_1 == 0 or detect_state_2 == 0:
         if ret != 0:
             result = "Activation failed"
-            response = jsonify({"compare_result": result, "compare_similarity": similarity})
+            response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
             response.status_code = 200
             response.headers["Content-Type"] = "application/json; charset=utf-8"
             return response
             
         # print(f"\n hand detection failed !\n plesae make sure that input hand image is valid or not.")
         result = "hand detection failed !\nPlesae make sure that input hand image is valid or not."
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -98,7 +103,7 @@ def compare_palmprint():
     if detect_state_1 >= 2 or detect_state_2 >= 2:
         # print(f"\n multi-hand detected !\n plesae put one hand image, not multiple hand.")
         result = "multi-hand detected !\nPlesae try on image with one hand , not multiple hand."
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -119,7 +124,7 @@ def compare_palmprint():
         similarity = score
         # print(f"\n 2 images are from the different hand\n similarity: {score}")
     
-    response = jsonify({"compare_result": result, "compare_similarity": similarity})
+    response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
     response.status_code = 200
     response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -129,6 +134,9 @@ def compare_palmprint():
 def compare_palmprint_base64():
     result = "None"
     similarity = -1
+
+    palm1 = None
+    palm2 = None
     
     content = request.get_json()
 
@@ -139,7 +147,7 @@ def compare_palmprint_base64():
         image1 = cv2.imdecode(np_array, cv2.IMREAD_COLOR)   
     except:
         result = "Failed to open file1"
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -152,7 +160,7 @@ def compare_palmprint_base64():
         image2 = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
     except IOError as exc:
         result = "Failed to open file2"
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -163,11 +171,14 @@ def compare_palmprint_base64():
     hand_type_1, x11, y11, x12, y12, detect_state_1 = encoder.detect_using_bytes(img1)
     hand_type_2, x21, y21, x22, y22, detect_state_2 = encoder.detect_using_bytes(img2)
 
+    palm1 = [hand_type_1, x11, y11, x12, y12]
+    palm2 = [hand_type_2, x21, y21, x22, y22]
+
     if hand_type_1 != hand_type_2:
         result = "Different hand"
         # print(f"\n 2 images are from the different hand\n similarity: 0.0")
         similarity = 0.0
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -175,14 +186,14 @@ def compare_palmprint_base64():
     if detect_state_1 == 0 or detect_state_2 == 0:
         if ret != 0:
             result = "Activation failed"
-            response = jsonify({"compare_result": result, "compare_similarity": similarity})
+            response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
             response.status_code = 200
             response.headers["Content-Type"] = "application/json; charset=utf-8"
             return response
             
         # print(f"\n hand detection failed !\n plesae make sure that input hand image is valid or not.")
         result = "hand detection failed !\nPlesae make sure that input hand image is valid or not."
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -190,7 +201,7 @@ def compare_palmprint_base64():
     if detect_state_1 >= 2 or detect_state_2 >= 2:
         # print(f"\n multi-hand detected !\n plesae put one hand image, not multiple hand.")
         result = "multi-hand detected !\nPlesae try on image with one hand , not multiple hand."
-        response = jsonify({"compare_result": result, "compare_similarity": similarity})
+        response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
         return response
@@ -211,13 +222,11 @@ def compare_palmprint_base64():
         similarity = score
         # print(f"\n 2 images are from the different hand\n similarity: {score}")
     
-    response = jsonify({"compare_result": result, "compare_similarity": similarity})
+    response = jsonify({"compare_result": result, "compare_similarity": similarity, "palm1": palm1, "palm2": palm2})
 
     response.status_code = 200
     response.headers["Content-Type"] = "application/json; charset=utf-8"
     return response
-
-    
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
