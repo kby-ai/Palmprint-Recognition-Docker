@@ -11,6 +11,7 @@ RUN apt-get update -y && \
     libtbb2 \
     libtiff5 \
     libtbb-dev \
+    unzip \
     libopenexr-dev \
     libgl1-mesa-glx \
     libglib2.0-0 \
@@ -26,7 +27,9 @@ WORKDIR /root/kby-ai-palmprint
 
 # Copy shared libraries and application files
 COPY ./libhand.so /usr/local/lib/
-COPY ./lib/* /usr/local/lib/
+COPY ./libopencv.zip .
+RUN unzip libopencv.zip
+RUN cp -f libopencv/* /usr/local/lib/ 
 RUN ldconfig
 
 # Copy Python and application files
@@ -39,9 +42,9 @@ COPY ./img ./img
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
-
+RUN chmod +x ./run.sh
 # Set up entrypoint
-CMD ["./run.sh"]
+CMD ["/root/kby-ai-palmprint/run.sh"]
 
 # Expose ports
 EXPOSE 8080 9000

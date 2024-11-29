@@ -8,6 +8,16 @@ frame_margin = 300  # the extra marine size of the frame inputted into Google Me
 # multiple of two)
 roi_size_threshold = 0.23
 
+def mat_to_bytes(mat):
+    """
+    Convert cv::Mat image data (NumPy array in Python) to raw bytes.
+    """
+    # Encode cv::Mat as PNG bytes
+    is_success, buffer = cv2.imencode(".png", mat)
+    if not is_success:
+        raise ValueError("Failed to encode cv::Mat image")
+    return buffer.tobytes()
+
 def img_crop(img_original, x2, x1, y2, y1, label):
     
     h, w, _ = img_original.shape
@@ -71,8 +81,7 @@ def img_crop(img_original, x2, x1, y2, y1, label):
         # return None, 5
     return roi, 0
             
-def get_roi(path, hand_type, x1, y1, x2, y2):
-    img = cv2.imread(path)
+def get_roi(img, hand_type, x1, y1, x2, y2):
     
     if hand_type == 0:
         label = "Left"
