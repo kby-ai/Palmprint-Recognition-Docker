@@ -73,8 +73,9 @@ def compare_palmprint():
     img2 = mat_to_bytes(image2)
     hand_type_1, x11, y11, x12, y12, detect_state_1 = encoder.detect_using_bytes(img1)
     hand_type_2, x21, y21, x22, y22, detect_state_2 = encoder.detect_using_bytes(img2)
-    palm1 = [hand_type_1, x11, y11, x12, y12]
-    palm2 = [hand_type_2, x21, y21, x22, y22]
+
+    palm1 = {"hand_type": hand_type_1, "x1": x11, "y1": y11, "x2": x12, "y2": y12}
+    palm2 = {"hand_type": hand_type_2, "x1": x21, "y1": y21, "x2": x22, "y2": y22}
 
     if hand_type_1 != hand_type_2:
         result = "Different hand"
@@ -171,8 +172,8 @@ def compare_palmprint_base64():
     hand_type_1, x11, y11, x12, y12, detect_state_1 = encoder.detect_using_bytes(img1)
     hand_type_2, x21, y21, x22, y22, detect_state_2 = encoder.detect_using_bytes(img2)
 
-    palm1 = [hand_type_1, x11, y11, x12, y12]
-    palm2 = [hand_type_2, x21, y21, x22, y22]
+    palm1 = {"hand_type": hand_type_1, "x1": x11, "y1": y11, "x2": x12, "y2": y12}
+    palm2 = {"hand_type": hand_type_2, "x1": x21, "y1": y21, "x2": x22, "y2": y22}
 
     if hand_type_1 != hand_type_2:
         result = "Different hand"
