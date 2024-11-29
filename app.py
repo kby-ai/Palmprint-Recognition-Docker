@@ -45,7 +45,8 @@ def compare_palmprint():
     file2 = request.files['file2']
 
     try:
-        image1 = cv2.imdecode(np.fromstring(file1.read(), np.uint8), cv2.IMREAD_COLOR)
+        image1 = cv2.imdecode(np.frombuffer(file1.read(), np.uint8), cv2.IMREAD_COLOR)
+
     except:
         result = "Failed to open file1"
         response = jsonify({"compare_result": result, "compare_similarity": similarity})
@@ -56,7 +57,7 @@ def compare_palmprint():
 
 
     try:
-        image2 = cv2.imdecode(np.fromstring(file2.read(), np.uint8), cv2.IMREAD_COLOR)
+        image2 = cv2.imdecode(np.frombuffer(file2.read(), np.uint8), cv2.IMREAD_COLOR)
     except:
         result = "Failed to open file2"
         response = jsonify({"compare_result": result, "compare_similarity": similarity})
