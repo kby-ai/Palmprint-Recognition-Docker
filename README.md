@@ -27,11 +27,11 @@ It includes features that allow for testing plamprint recognition between two im
   |------------------|------------------|------------------|
   | ➡️        | <b>[Palmprint Recognition - Linux](https://github.com/kby-ai/Palmprint-Recognition-Linux)</b>    | <b>Palmprint Comparison Linux SDK</b> |
   | 2        | [Palmprint Recognition - Docker](https://hub.docker.com/r/kbyai/palmprint-recognition)    | Palmprint Comparison Docker Image |
-  | 3        | [Face Recognition - Linux](https://github.com/kby-ai/FaceRecognition-Docker)    | Face Recognition |
-  | 4        | [Face Recognition - Windows](https://github.com/kby-ai/FaceRecognition-Windows)    | Face Recognition |
-  | 5        | [Face Recognition - C#](https://github.com/kby-ai/FaceRecognition-CSharp-.NET)    | Face Recognition |
+  | 3        | [Palmvein Recognition - Linux](https://github.com/kby-ai/Palmprint-Recognition-Linux)    | Palmvein Comparison Linux SDK |
+  | 4        | [Palmprint Recognition - Android](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison Android SDK |
+  | 5        | [Palmprint Recognition - iOS](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison iOS SDK |
 
-> To get Face SDK(mobile), please visit products [here](https://github.com/kby-ai/Product):<br/>
+> To get more products, please visit products [here](https://github.com/kby-ai):<br/>
 
 ## Try the API
 ### Online Demo
@@ -52,9 +52,9 @@ It includes features that allow for testing plamprint recognition between two im
 
 ## SDK License
 
-This project uses `KBY-AI`'s `Face Recognition Server SDK`, which requires a license per machine.
+This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which requires a license per machine.
 
-- The code below shows how to use the license: https://github.com/kby-ai/FaceRecognition-Docker/blob/5c6bdaff0e8154d6c6472ac9faf9158c6a6e7b47/app.py#L26-L36
+- The code below shows how to use the license: https://github.com/kby-ai/Palmprint-Recognition-Linux/blob/51a6fc5a597ec8fc475128cc176c60027b60206b/app.py#L21-L31
 
 - To request the license, please provide us with the `machine code` obtained from the `getMachineCode` function.
 
@@ -68,36 +68,31 @@ This project uses `KBY-AI`'s `Face Recognition Server SDK`, which requires a lic
 ## How to run
 
 ### 1. System Requirements
-  - CPU: 2 cores or more (Recommended: 2 cores)
-  - RAM: 4 GB or more (Recommended: 8 GB)
-  - HDD: 4 GB or more (Recommended: 8 GB)
-  - OS: Ubuntu 20.04 or later
-  - Dependency: OpenVINO™ Runtime (Version: 2022.3)
+  - `CPU`: 2 cores or more (Recommended: 2 cores)
+  - `RAM`: 4 GB or more (Recommended: 8 GB)
+  - `HDD`: 4 GB or more (Recommended: 8 GB)
+  - `OS`: `Ubuntu 20.04` or later
+  - Dependency: `OpenVINO™ Runtime` (Version: 2022.3)
 
 ### 2. Setup and Test
   - Clone the project:
     ```bash
-    git clone https://github.com/kby-ai/FaceRecognition-Docker.git
+    git clone https://github.com/kby-ai/Palmprint-Recognition-Linux.git
     ```
-  - Download the model from Google Drive: [click here](https://drive.google.com/file/d/19vA7ZOlo19BcW8v4iCoCGahUEbgKCo48/view?usp=sharing)
     ```bash
-    cd FaceRecognition-Docker
-    
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=19vA7ZOlo19BcW8v4iCoCGahUEbgKCo48' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=19vA7ZOlo19BcW8v4iCoCGahUEbgKCo48" -O data.zip && rm -rf /tmp/cookies.txt
-    
-    unzip data.zip
+    cd Palmprint-Recognition-Linux
     ```
   - Build the `Docker` image:
     ```bash
-    sudo docker build --pull --rm -f Dockerfile -t kby-ai-face:latest .
+    sudo docker build --pull --rm -f Dockerfile -t kby-ai-palmprint:latest .
     ```
   - Run the `Docker` container:
     ```bash
-    sudo docker run -v ./license.txt:/home/openvino/kby-ai-face/license.txt -p 8081:8080 kby-ai-face
+    sudo docker run -v ./license.txt:/root/kby-ai-palmprint/license.txt -p 8081:8080 -p 9001:9000 kby-ai-palmprint
     ```
-  - Send us the `machine code` and then we will give you a license key.
+  - Send us the `machine code` and then we will give you a license key to make SDK activate.
   
-    After that, update the `license.txt` file by overwriting the license key that you received. Then, run the `Docker` container again.
+    After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
     
     ![image](https://github.com/kby-ai/FaceRecognition-Docker/assets/125717930/d7e84054-e4da-42c4-a88f-e74d50387d92)
     
