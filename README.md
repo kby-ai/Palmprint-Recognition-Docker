@@ -53,7 +53,7 @@ It includes features that allow for testing plamprint recognition between two im
 
 This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which requires a license per machine.
 
-- The code below shows how to use the license: https://github.com/kby-ai/Palmprint-Recognition-Linux/blob/51a6fc5a597ec8fc475128cc176c60027b60206b/app.py#L21-L31
+- The code below shows how to use the license: https://github.com/kby-ai/Palmprint-Recognition-Docker/blob/290f714ca49496164f0586f277b6104bfd164ad7/app.py#L21-L31
 
 - To request the license, please provide us with the `machine code` obtained from the `getMachineCode` function.
 
@@ -76,10 +76,10 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
 ### 2. Setup and Test
   - Clone the project:
     ```bash
-    git clone https://github.com/kby-ai/Palmprint-Recognition-Linux.git
+    git clone https://github.com/kby-ai/Palmprint-Recognition-Docker.git
     ```
     ```bash
-    cd Palmprint-Recognition-Linux
+    cd Palmprint-Recognition-Docker
     ```
   - Build the `Docker` image:
     ```bash
@@ -87,9 +87,9 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
     ```
   - Run the `Docker` container:
     ```bash
-    sudo docker run -v ./license.txt:/root/kby-ai-palmprint/license.txt -p 8081:8080 -p 9001:9000 kby-ai-palmprint
+    sudo docker run -v ./license.txt:/root/kby-ai-palmprint/license.txt -p 8084:8080 -p 9004:9000 kby-ai-palmprint
     ```
-  - Send us the `machine code` and then we will give you a license key to make SDK activate.
+  - Send us the `machine code` and then we will give you a license key to make the `SDK` activate.
   
     After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
     
