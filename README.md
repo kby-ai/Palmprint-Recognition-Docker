@@ -35,20 +35,19 @@ It includes features that allow for testing plamprint recognition between two im
 
 ## Try the API
 ### Online Demo
-  You can test the SDK using images from the following URL:
-  https://web.kby-ai.com
+  This `SDK` can be tested on online test demo page [here](https://web.kby-ai.com):
+  > Please select tab 'Palmprint Recognition` for this SDK
   
   ![image](https://github.com/user-attachments/assets/4e660694-f5bf-4f00-be2b-822c093e2d94)
   
 ### Postman
-  To test the API, you can use `Postman`. Here are the endpoints for testing:
-  - Test with an image file: Send a POST request to `http://18.221.33.238:8081/compare_face`.
-  - Test with a `base64-encoded` image: Send a POST request to `http://18.221.33.238:8081/compare_face_base64`.
+  The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
+  - Test with an image file: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint`.
+  - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint_base64`.
 
     You can download the `Postman` collection to easily access and use these endpoints. [click here](https://github.com/kby-ai/FaceRecognition-Docker/tree/main/postman/kby-ai-face.postman_collection.json)
     
-    ![image](https://github.com/kby-ai/FaceRecognition-Docker/assets/125717930/dce48454-6d41-46f0-9623-b26bec103616)
-
+    ![image](https://github.com/user-attachments/assets/4c5a528d-572c-46fe-b2de-6f387929b181)
 
 ## SDK License
 
