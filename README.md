@@ -107,22 +107,18 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
 
 ### 3. Execute the Gradio demo
   - Setup `Gradio`
-    Ensure that you have the necessary dependencies installed. 
-    
-    `Gradio` requires `Python 3.6` or above. 
-    
-    You can install `Gradio` using `pip` by running the following command:
+    Ensure that the necessary dependencies are installed. </br>
+    `Gradio` requires `Python 3.6` or above. </br>
+    Install `Gradio` using `pip` by running the following command:
     ```bash
     pip install gradio
     ```
-  - Run the demo
-    Run it using the following command:
+  - Run the demo with the following command:
     ```bash
     cd gradio
     python demo.py
     ```
-  - `SDK` can be tested on the following URL:    
-    `http://127.0.0.1:9000`
+  - `SDK` can be tested on the following URL: `http://127.0.0.1:9000`
 
 ## About SDK
 
@@ -134,7 +130,7 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
   ```
 - Create new object for using `SDK` 
   ```python
-  config = handtool.EncoderConfig(29, 5, 5, 10)
+  config = handtool.EncoderConfig()
   encoder = handtool.create_encoder(config)  
   ```
 - Obtain the `machine code` to activate and request a license
@@ -142,62 +138,15 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
   machineCode = encoder.getMachineCode()
   print("\nmachineCode: ", machineCode.decode('utf-8'))
   ```
-  
-- Step Two
-
-  Next, activate the SDK using the received license.
+- Activate the `SDK` using the license key
   ```python
-  setActivation(license.encode('utf-8'))
+  ret = encoder.setActivation(license.encode('utf-8'))
+  print("\nactivation: ", ret)
   ```  
-  If activation is successful, the return value will be `SDK_SUCCESS`. Otherwise, an error value will be returned.
-
-- Step Three
-
-  After activation, call the initialization function of the SDK.
-  ```python
-  initSDK("data".encode('utf-8'))
-  ```
-  The first parameter is the path to the model.
-
-  If initialization is successful, the return value will be `SDK_SUCCESS`. Otherwise, an error value will be returned.
-
-### 2. Enum and Structure
-  - SDK_ERROR
-  
-    This enumeration represents the return value of the `initSDK` and `setActivation` functions.
-
-    | Feature| Value | Name |
-    |------------------|------------------|------------------|
-    | Successful activation or initialization        | 0    | SDK_SUCCESS |
-    | License key error        | -1    | SDK_LICENSE_KEY_ERROR |
-    | AppID error (Not used in Server SDK)       | -2    | SDK_LICENSE_APPID_ERROR |
-    | License expiration        | -3    | SDK_LICENSE_EXPIRED |
-    | Not activated      | -4    | SDK_NO_ACTIVATED |
-    | Failed to initialize SDK       | -5    | SDK_INIT_ERROR |
-
-- FaceBox
-  
-    This structure represents the output of the face detection function.
-
-    | Feature| Type | Name |
-    |------------------|------------------|------------------|
-    | Face rectangle        | int    | x1, y1, x2, y2 |
-    | Face angles (-45 ~ 45)        | float    | yaw, roll, pitch |
-    | Face quality (0 ~ 1)        | float    | face_quality |
-    | Face luminance (0 ~ 255)       | float    | face_luminance |
-    | Eye distance (pixels)       | float    | eye_dist |
-    | Eye closure (0 ~ 1)       | float    | left_eye_closed, right_eye_closed |
-    | Face occlusion (0 ~ 1)       | float    | face_occlusion |
-    | Mouth opening (0 ~ 1)       | float    | mouth_opened |
-    | 68 points facial landmark        | float [68 * 2]    | landmarks_68 |
-    | Face templates        | unsigned char [2048]    | templates |
-  
-    > 68 points facial landmark
-    
-    <img src="https://user-images.githubusercontent.com/125717930/235560305-ee1b6a39-5dab-4832-a214-732c379cabfd.png" width=500/>
+  Once `ret` value is zero, SDK can get work started
 
 ### 3. APIs
-  - Face Detection
+  - Hand Detection
   
     The `Face SDK` provides a single API for detecting faces, determining `face orientation` (yaw, roll, pitch), assessing `face quality`, detecting `facial occlusion`, `eye closure`, `mouth opening`, and identifying `facial landmarks`.
     
