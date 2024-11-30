@@ -128,12 +128,19 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
 
 ### 1. Initializing the SDK
 
-- Step One
-
-  First, obtain the `machine code` to activate and request a license based on the `machine code`.
+- Import SDK python package
   ```python
-  machineCode = getMachineCode()
-  print("machineCode: ", machineCode.decode('utf-8'))
+  import handtool
+  ```
+- Create new object for using `SDK` 
+  ```python
+  config = handtool.EncoderConfig(29, 5, 5, 10)
+  encoder = handtool.create_encoder(config)  
+  ```
+- Obtain the `machine code` to activate and request a license
+  ```python
+  machineCode = encoder.getMachineCode()
+  print("\nmachineCode: ", machineCode.decode('utf-8'))
   ```
   
 - Step Two
