@@ -87,7 +87,7 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
     ```
   - Run the `Docker` container:
     ```bash
-    sudo docker run -v ./license.txt:/root/kby-ai-palmprint/license.txt -p 8084:8080 -p 9004:9000 kby-ai-palmprint
+    sudo docker run -v ./license.txt:/root/kby-ai-palmprint/license.txt -p 8081:8080 -p 9001:9000 kby-ai-palmprint
     ```
   - Send us the `machine code` and then we will give you a license key to make the `SDK` activate.
   
