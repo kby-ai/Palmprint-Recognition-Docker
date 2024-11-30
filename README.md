@@ -145,56 +145,34 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
   ```  
   Once `ret` value is zero, SDK can get work started
 
-### 3. APIs
+### 2. APIs
   - Hand Detection
   
-    The `Face SDK` provides a single API for detecting faces, determining `face orientation` (yaw, roll, pitch), assessing `face quality`, detecting `facial occlusion`, `eye closure`, `mouth opening`, and identifying `facial landmarks`.
-    
+    The `SDK` provides a single API for detecting hands, determining `hand landmark`.</br>
     The function can be used as follows:
-
     ```python
-    faceBoxes = (FaceBox * maxFaceCount)()
-    faceCount = faceDetection(image_np, image_np.shape[1], image_np.shape[0], faceBoxes, maxFaceCount)
+    hand_type, x1, y1, x2, y2, detect_state = encoder.detect_using_bytes(img)
+    roi = mat_to_bytes(get_roi(img, hand_type, x1, y1, x2, y2))
     ```
-    
-    This function requires 5 parameters.
-    * The first parameter: the byte array of the RGB image buffer.
-    * The second parameter: the width of the image.
-    * The third parameter: the height of the image.
-    * The fourth parameter: the `FaceBox` array allocated with `maxFaceCount` for storing the detected faces.
-    * The fifth parameter: the count allocated for the maximum `FaceBox` objects.
-
-    The function returns the count of the detected face.
-
-  - Create Template
-
-    The SDK provides a function that enables the generation of `template`s from RGB data. These `template`s can be used for face verification between two faces.
-
-    The function can be used as follows:
-
+    * `hand_type`: it indicates hand type value, `0` value: `left hand`, `1` value: `right hand`.
+    * `x1`, `y1`, `x2`, `y2`: hand landmark points to get `ROI` image.
+    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
+  - Create Feature
+    `encode_using_bytes` function returns palmprint feature against `ROI` data.</br.
     ```python    
-    templateExtraction(image_np1, image_np1.shape[1], image_np1.shape[0], faceBoxes1[0])
+    palmprint = encoder.encode_using_bytes(roi)
     ```
-
-    This function requires 4 parameters.
-    * The first parameter: the byte array of the RGB image buffer.
-    * The second parameter: the width of the image.
-    * The third parameter: the height of the image.
-    * The fourth parameter: the `FaceBox` object obtained from the `faceDetection` function.
-
-    If the `template` extraction is successful, the function will return `0`. Otherwise, it will return `-1`.
-    
-  - Calculation similiarity
-
-    The `similarityCalculation` function takes a byte array of two `template`s as a parameter. 
-
+    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
+    * `palmprint`: palmprint feature calculated from hand `ROI` data.    
+  - Similiarity
+    The `compare_to` function takes two palmprint `feature`s as a parameter and returns `score` value to determine whether 2 input hands are from the same or different.
     ```python
-    similarity = similarityCalculation(faceBoxes1[0].templates, faceBoxes2[0].templates)
+    one_palmprint_code = encoder.encode_using_bytes(roi1)
+    another_palmprint_code = encoder.encode_using_bytes(roi2)
+    score = one_palmprint_code.compare_to(another_palmprint_code)
     ```
 
-    It returns the similarity value between the two `template`s, which can be used to determine the level of likeness between the two individuals.
-
-### 4. Thresholds
-  The default thresholds are as the following below:
-  https://github.com/kby-ai/FaceRecognition-Docker/blob/75800590cd9f2a3b778ec176bf465d1a731278fa/app.py#L18-L20
+### 3. Threshold
+  The threshold is `0.15` as a default.
+  https://github.com/kby-ai/Palmprint-Recognition-Docker/blob/ddf1f039c55534d7189fda162b5c4df844131b72/app.py#L12-L13
 
