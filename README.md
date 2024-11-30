@@ -23,13 +23,13 @@ It includes features that allow for testing plamprint recognition between two im
 > We can customize the SDK to align with customer's specific requirements.
 
 ### ◾PalmRecognitionSDK Product List
-  | No.      | Repository | SDK Details |
-  |------------------|------------------|------------------|
-  | ➡️        | <b>[Palmprint Recognition - Linux](https://github.com/kby-ai/Palmprint-Recognition-Linux)</b>    | <b>Palmprint Comparison Linux SDK</b> |
-  | 2        | [Palmprint Recognition - Docker](https://hub.docker.com/r/kbyai/palmprint-recognition)    | Palmprint Comparison Docker Image |
-  | 3        | [Palmvein Recognition - Linux](https://github.com/kby-ai/Palmprint-Recognition-Linux)    | Palmvein Comparison Linux SDK |
-  | 4        | [Palmprint Recognition - Android](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison Android SDK |
-  | 5        | [Palmprint Recognition - iOS](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison iOS SDK |
+  | No.      | Repository | SDK Details | Status |
+  |------------------|------------------|------------------|------------------|
+  | ➡️        | <b>[Palmprint Recognition - Linux](https://github.com/kby-ai/Palmprint-Recognition-Linux)</b>    | <b>Palmprint Comparison Linux SDK</b> | <b>Available</b> |
+  | 2        | [Palmprint Recognition - Docker](https://hub.docker.com/r/kbyai/palmprint-recognition)    | Palmprint Comparison Docker Image | Available |
+  | 3        | Palmvein Recognition - Linux    | Palmvein Comparison Linux SDK | Developing |
+  | 4        | [Palmprint Recognition - Android](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison Android SDK | Available |
+  | 5        | Palmprint Recognition - iOS    | Palmprint Comparison iOS SDK | Developing |
 
 > To get more products, please visit products [here](https://github.com/kby-ai):<br/>
 
@@ -38,7 +38,7 @@ It includes features that allow for testing plamprint recognition between two im
   You can test the SDK using images from the following URL:
   https://web.kby-ai.com
   
-  ![image](https://github.com/kby-ai/FaceRecognition-Docker/assets/125717930/a7aa607c-8c40-4ef0-9592-7332c97457ca)
+  ![image](https://github.com/user-attachments/assets/4e660694-f5bf-4f00-be2b-822c093e2d94)
   
 ### Postman
   To test the API, you can use `Postman`. Here are the endpoints for testing:
