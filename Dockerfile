@@ -38,7 +38,7 @@ COPY ./app.py .
 COPY ./roi.py .
 COPY ./requirements.txt .
 COPY ./run.sh .
-COPY ./img ./img
+COPY ./palmprint_examples ./palmprint_examples
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
