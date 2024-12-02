@@ -154,7 +154,7 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
     * `x1`, `y1`, `x2`, `y2`: hand landmark points to get `ROI` image.
     * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
   - Create Feature
-    `encode_using_bytes` function returns palmprint feature against `ROI` data.</br.
+    `encode_using_bytes` function returns palmprint feature against `ROI` data.</br>
     ```python    
     palmprint = encoder.encode_using_bytes(roi)
     ```
