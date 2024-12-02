@@ -44,8 +44,6 @@ It includes features that allow for testing plamprint recognition between two im
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
   - Test with an image file: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint`.
   - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint_base64`.
-
-    You can download the `Postman` collection to easily access and use these endpoints. [click here](https://github.com/kby-ai/FaceRecognition-Docker/tree/main/postman/kby-ai-face.postman_collection.json)
     
     ![image](https://github.com/user-attachments/assets/4c5a528d-572c-46fe-b2de-6f387929b181)
 
@@ -102,8 +100,6 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
     Test with an image file: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/compare_palmprint`.
     
     Test with a `base64-encoded` image: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/compare_palmprint_base64`.
-    
-    You can download the `Postman` collection to easily access and use these endpoints. [click here](https://github.com/kby-ai/FaceRecognition-Docker/tree/main/postman/kby-ai-face.postman_collection.json)
 
 ### 3. Execute the Gradio demo
   - Setup `Gradio`
