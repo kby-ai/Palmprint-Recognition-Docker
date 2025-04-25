@@ -35,7 +35,6 @@ It includes features that allow for testing plamprint recognition between two im
   | 2        | [Palmprint Recognition - Docker](https://hub.docker.com/r/kbyai/palmprint-recognition)    | Palmprint Comparison Docker Image | Available |
   | 3        | [Palmvein Recognition - Linux](https://github.com/kby-ai/Palmvein-Recognition-Docker)    | Palmvein Comparison Linux SDK | Available |
   | 4        | [Palmprint Recognition - Android](https://github.com/kby-ai/Palmprint-Recognition-Android)    | Palmprint Comparison Android SDK | Available |
-  | 5        | Palmprint Recognition - iOS    | Palmprint Comparison iOS SDK | Developing |
 
 > To get more products, please visit products [here](https://github.com/kby-ai):<br/>
 
